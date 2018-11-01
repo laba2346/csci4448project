@@ -1,15 +1,14 @@
 from PyQt5 import QtGui
 from PyQt5.QtWidgets import QApplication, QWidget, QMainWindow, QDialog
-from Animal import *
-from Species import *
-from Zoo import *
-from Employee import *
-from Enclosure import *
+from models.Animal import *
+from models.Species import *
+from models.Zoo import *
+from models.Employee import *
+from models.Enclosure import *
 import sys
 
-from main_window import Ui_MainWindow
-from new_animal import Ui_Dialog as Form
-import new_animal
+from views.main_window import Ui_MainWindow
+from views.new_animal import Ui_Dialog as Form
 
 class App(QMainWindow):
     def __init__(self):

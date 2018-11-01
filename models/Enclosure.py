@@ -1,4 +1,4 @@
-from Animal import *
+from models.Animal import *
 
 
 class Enclosure:

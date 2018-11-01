@@ -84,8 +84,8 @@
            <rect>
             <x>0</x>
             <y>0</y>
-            <width>547</width>
-            <height>307</height>
+            <width>98</width>
+            <height>28</height>
            </rect>
           </property>
           <widget class="QListWidget" name="animal_list">
