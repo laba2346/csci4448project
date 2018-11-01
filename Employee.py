@@ -1,13 +1,12 @@
 class Employee:
-    id = 0
+    id = 1
 
-    def __init__(self, name, username, password, contactInfo):
+    def __init__(self, name, credentials, contactInfo):
         self.name = name
-        #TODO make new credentials obj
-        #TODO make new contactInfo obj
+        self.credentials = credentials
         self.contactInfo = contactInfo
-        self.id = id
-        id += 1
+        self.id = Employee.id
+        Employee.id += 1
 
     # Getters
     def getName(self):
@@ -17,7 +16,7 @@ class Employee:
         return self.credentials
 
     def getContactInfo(self):
-        retiurn self.contactInfo
+        return self.contactInfo
 
     # Setters
     def setName(self, name):

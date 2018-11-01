@@ -1,9 +1,16 @@
+from Animal import *
+
+
 class Enclosure:
+    id = 1
+
     def __init__(self, animals, foodType, cleanliness):
         self.animals = animals
         self.foodType = foodType
         self.cleanliness = cleanliness
         self.assignedKeeper = None
+        self.id = Enclosure.id
+        Enclosure.id += 1
 
     # Getters
     def getAnimals(self):
@@ -18,6 +25,8 @@ class Enclosure:
     def getAssignedKeeper(self):
         return self.assignedKeeper
 
+    def getID(self):
+        return self.id
 
     # Setters
     def setAnimals(self, animals):
@@ -31,3 +40,6 @@ class Enclosure:
 
     def setAssignedKeeper(self, assignedKeeper):
         self.assignedKeeper = assignedKeeper
+
+    def addAnimal(self, animal):
+        self.animals.append(animal)

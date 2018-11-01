@@ -1,12 +1,15 @@
 class Animal:
-    def __init__(self, id, name, sex, species, age, Healthy):
+    id = 1
+
+    def __init__(self, name, sex, species, age, healthy):
         self.id = id
         self.name = name
         self.sex = sex
         self.species = species
         self.age = age
         self.healthy = healthy
-
+        self.id = Animal.id
+        Animal.id += 1
     # Getters
     def getID(self):
         return self.id
