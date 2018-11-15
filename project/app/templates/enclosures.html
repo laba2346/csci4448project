@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<div class="jumbotron">
+    <h1>Enclosures</h1>
+</div>
+<a role="button" class="btn btn-success" href="/create-new-enclosure">Add new enclosure</a>
+
+{% for enclosure in enclosures %}
+<h2> Enclosure {{ enclosure.getID() }} </h2>
+<ul class="list-group">
+{% for animal in enclosure.getAnimals() %}
+  <li class="list-group-item">{{animal.getName()}}</li>
+{% endfor %}
+</ul>
+{% endfor %}
+{% endblock %}

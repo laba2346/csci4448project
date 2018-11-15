@@ -1,13 +1,10 @@
-from models.Animal import *
-
-
 class Enclosure:
     id = 1
 
-    def __init__(self, animals, foodType, cleanliness):
+    def __init__(self,animals,foodType,cleanliness):
         self.animals = animals
         self.foodType = foodType
-        self.cleanliness = cleanliness
+        self.cleanliness = "Clean"
         self.assignedKeeper = None
         self.id = Enclosure.id
         Enclosure.id += 1
@@ -43,3 +40,6 @@ class Enclosure:
 
     def addAnimal(self, animal):
         self.animals.append(animal)
+
+    def removeAnimal(self, animalID):
+        self.animals = [animal for animal in self.animals if animal.getID() != animalID]

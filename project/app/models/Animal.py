@@ -10,6 +10,8 @@ class Animal:
         self.healthy = healthy
         self.id = Animal.id
         Animal.id += 1
+
+    
     # Getters
     def getID(self):
         return self.id

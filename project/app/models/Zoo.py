@@ -21,6 +21,12 @@ class Zoo:
             if(enclosureID == e.getID()):
                 e.addAnimal(animal)
 
+    def removeAnimalFromEnclosure(self, enclosureID, animalID):
+        for i in range(0, len(self.enclosures)):
+            if(self.enclosures[i].getID() == enclosureID):
+                print('lets goo')
+                self.enclosures[i].removeAnimal(animalID)
+
 
     def addEmployee(self, employee):
         self.employees.append(employee)

@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock %}
+{% block body %}
+
+<h1 class="jumbotron">Animals</h1>
+<div class="custom-container">
+    <form action="/add-animal" method="post">
+        <h2>Add a new animal</h2>
+        <div class="row">
+            <div class="col">
+                <input type="text" class="form-control" name="name" placeholder="Name">
+            </div>
+            <div class="col">
+                <select id="species" class="form-control" name="species" placeholder="Species">
+                    <option selected>Choose species...</option>
+                    {% for s in species %}
+                    <option>{{ s }}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="age" placeholder="Age">
+            </div>
+            <div class="col">
+                <input type="text" class="form-control" name="sex" placeholder="Sex">
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="col">
+                <select id="enclosure" class="form-control" name="enclosure" placeholder="Enclosure">
+                    <option selected>Choose enclosure...</option>
+                    {% for e in enclosures %}
+                    <option>{{ e.getID() }}</option>
+                    {% endfor%}
+                </select>
+            </div>
+            <div class="col">
+            <button type="submit" class="btn btn-primary">Add</button>
+            </div>
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Species</th>
+                <th scope="col">Sex</th>
+                <th scope="col">Age</th>
+                <th scope="col">Healthy?</th>
+                <th scope="col">Enclosure ID</th>
+                <th scope="col">Edit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for enclosure in enclosures %}
+            {% for animal in enclosure.getAnimals() %}
+            <tr>
+                <th scope="row">{{ animal.getName() }}</th>
+                <td>{{ animal.getSpecies().getName() }}</td>
+                <td>{{ animal.getSex() }}</td>
+                <td>{{ animal.getAge() }}</td>
+                <td>{{ animal.getHealthy() }}</td>
+                <td>{{ enclosure.getID() }}</td>
+                <td><a role="button" class="btn btn-danger" href="/delete-animal/{{ enclosure.getID() }}/{{ animal.getID() }}/">Delete</a></td>
+            </tr>
+            {% endfor %}
+            {% endfor %}
+
+        </tbody>
+    </table>
+</div>
+{% endblock %}
