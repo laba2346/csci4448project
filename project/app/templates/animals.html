@@ -56,7 +56,7 @@
             {% for animal in enclosure.getAnimals() %}
             <tr>
                 <th scope="row">{{ animal.getName() }}</th>
-                <td>{{ animal.getSpecies().getName() }}</td>
+                <td>{{ animal.getSpeciesName() }}</td>
                 <td>{{ animal.getSex() }}</td>
                 <td>{{ animal.getAge() }}</td>
                 <td>{{ animal.getHealthy() }}</td>

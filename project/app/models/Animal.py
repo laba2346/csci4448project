@@ -1,17 +1,22 @@
 class Animal:
     id = 1
 
-    def __init__(self, name, sex, species, age, healthy):
+    def __init__(self, name, sex, age, healthy, diet, speciesName,
+        speciesDescription, habitat):
+
         self.id = id
         self.name = name
         self.sex = sex
-        self.species = species
         self.age = age
         self.healthy = healthy
+        self.diet = diet
+        self.speciesName = speciesName
+        self.speciesDescription = speciesDescription
+        self.habitat = habitat
         self.id = Animal.id
         Animal.id += 1
 
-    
+
     # Getters
     def getID(self):
         return self.id
@@ -22,15 +27,17 @@ class Animal:
     def getSex(self):
         return self.sex
 
-    def getSpecies(self):
-        return self.species
-
     def getAge(self):
         return self.age
 
     def getHealthy(self):
         return self.healthy
 
+    def getSpeciesName(self):
+        return self.speciesName
+
+    def getSpeciesDescription(self):
+        return self.speciesDescription
 
     # Setters
     def setName(self, name):

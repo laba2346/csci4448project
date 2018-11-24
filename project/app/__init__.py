@@ -1,15 +1,17 @@
 from flask import Flask
 from config import Config
 from app.controllers.ZooController import ZooController
+from app.controllers.UserController import UserController
 from flask_login import LoginManager
 
 app = Flask(__name__)
 login = LoginManager()
 login.init_app(app)
 
-# Initialize the zoo
+# Initialize the controllers & zoo object
 zooController = ZooController()
-zoo = zooController.createZoo()
+zooController.createZoo()
+userController = UserController()
 
 login.login_view = 'login'
 

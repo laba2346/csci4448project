@@ -38,12 +38,4 @@ class Zoo:
                 del self.employees[index]
 
     def getSpeciesList(self):
-        result = [s.getName() for s in self.species]
-
-        return result
-
-    def getSpeciesObj(self, speciesName):
-        for s in self.species:
-            if(s.getName() == speciesName):
-                return s
-        return None
+        return self.species
