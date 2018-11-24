@@ -7,7 +7,7 @@ from flask import render_template, redirect, url_for, request
 
 class ZooController:
     def __init__(self):
-        self.animalFactory = AnimalFactory
+        self.animalFactory = AnimalFactory()
 
     def createZoo(self):
         species_list = ["Monkey", "Gorilla", "Polar bear"]

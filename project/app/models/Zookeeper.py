@@ -1,6 +1,8 @@
+from .Employee import Employee
+
 class Zookeeper(Employee):
-    def __init__(self, preferredSpecies):
-        Employee.__init__(self)
+    def __init__(self, name, username, password, id, preferredSpecies):
+        super().__init__(name, username, password, id, "Zookeeper")
         self.preferredSpecies = preferredSpecies
 
     def getPreferredSpecies(self):

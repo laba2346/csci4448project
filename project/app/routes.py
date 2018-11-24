@@ -17,7 +17,7 @@ from app.controllers.ZooController import *
 @app.route('/index')
 @login_required
 def index():
-    return render_template("index.html")
+    return render_template("index.html", current_user=current_user)
 
 @app.route('/about')
 @login_required
@@ -35,8 +35,8 @@ def enclosures():
     return render_template("enclosures.html", enclosures=zooController.getZoo().getEnclosures())
 
 @login.user_loader
-def load_user(user_id):
-    return userController.find_user(user_id)
+def load_user(username):
+    return userController.find_user(username)
 
 
 

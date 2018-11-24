@@ -2,18 +2,24 @@ from flask_login import UserMixin
 
 class Employee(UserMixin):
 
-    def __init__(self, name, username, password, id):
+    def __init__(self, name, username, password, id, role):
         self.name = name
         self.username = username
         self.password = password
         self.id = id
+        self.role = role
 
 
     # Getters
 
     def getName(self):
         return self.name
-        
+
+    def get_id(self):
+        return self.username
+
+    def getRole(self):
+        return self.role
     # def getCredentials(self):
     #     return self.credentials
 
@@ -25,6 +31,7 @@ class Employee(UserMixin):
 
     def check_password(self, password):
         return password == self.password
+
     # Setters
     def setName(self, name):
         self.name = name

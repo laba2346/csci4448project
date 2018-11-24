@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="jumbotron">
-    <h1>Welcome</h1>
+    <h1>Welcome {{ current_user.getRole() }}!</h1>
     <p>Welcome to ZooManagement. Click any of the tabs above to manage the zoo.</p>
 </div>
 {% endblock %}

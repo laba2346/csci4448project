@@ -1,1 +1,2 @@
-1,Landon,landon,password,
+1,Zookeeper,Landon,landon,password,Monkey,-1
+1,Veterinarian,LandonVet,landonvet,password,Gorilla,-1

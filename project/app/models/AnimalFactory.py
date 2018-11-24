@@ -3,7 +3,7 @@ from .Monkey import Monkey
 from .PolarBear import PolarBear
 
 class AnimalFactory:
-    def getAnimal(name, sex, age, healthy, animalType):
+    def getAnimal(self, name, sex, age, healthy, animalType):
         if(animalType == "Monkey"):
             return Monkey(name, sex, age, healthy)
         elif(animalType == "Gorilla"):
