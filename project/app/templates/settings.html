@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+{% block title %}About you{% endblock %}
+{% block body %}
+
+
+<h1 class="jumbotron display-4">About you</h1>
+<div class="outer_container_settings">
+    <div class="col shadow p-3 mb-5 bg-white rounded panel">
+        <dl class="row">
+            <dt class="col-sm-5">Name</dt>
+            <dd class="col-sm-7">{{ user.getContactInfo().getFirstName() }} {{ user.getContactInfo().getLastName() }}</dd>
+            <dt class="col-sm-5">Position</dt>
+            <dd class="col-sm-7">{{ user.getRole() }}</dd>
+            {% if user.getRole() == "Zookeeper" %}
+            <dt class="col-sm-5">Preferred Species</dt>
+            <dd class="col-sm-7">{{ user.getPreferredSpeciesName() }}</dd>
+            <dt class="col-sm-5">Assigned Enclosure (ID)</dt>
+            <dd class="col-sm-7">{{ user.getAssignmentID() }}</dd>
+            {% elif user.getRole() == "Veterinarian" %}
+            <dt class="col-sm-5">Treating animal?</dt>
+            <dd class="col-sm-7">{{ user.getIsTreatingAnimalEnglish() }}</dd>
+            <dt class="col-sm-5">Assigned Animal (ID)</dt>
+            <dd class="col-sm-7">{{ user.getAssignmentID() }}</dd>
+            {% endif %}
+        </dl>
+    </div>
+    <div class="col shadow p-3 mb-5 bg-white rounded panel" style="padding-bottom:10px;">
+        <form action="/edit-user" method="post">
+            <div class="input-group" style="margin-bottom:15px;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">First and last name</span>
+                </div>
+                <input type="text" aria-label="First name" name="firstName" value="{{ user.getContactInfo().getFirstName() }}" class="form-control">
+                <input type="text" aria-label="Last name" name="lastName" value="{{ user.getContactInfo().getLastName() }}" class="form-control">
+            </div>
+            <div class="input-group" style="margin-bottom:15px;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Username</span>
+                </div>
+                <input type="text" aria-label="Username" name="username" value="{{ user.getCredentials().getUsername() }}" class="form-control">
+            </div>
+            <div class="input-group" style="margin-bottom:15px;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Email</span>
+                </div>
+                <input type="text" aria-label="email" name="email" value="{{ user.getContactInfo().getEmail() }}" class="form-control">
+            </div>
+            <div class="input-group" style="margin-bottom:15px;">
+                <div class="input-group-prepend">
+                    <span class="input-group-text">Change password</span>
+                </div>
+                <input type="password" aria-label="password" name="password" class="form-control">
+            </div>
+            <input type="text" class="d-none" name="userID" value="{{user.getNumericID()}}" />
+            <div>
+                <button type="submit" style="float:right; margin-bottom:10px;" class="btn btn-success">Save changes</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+{% endblock %}

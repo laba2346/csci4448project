@@ -1,11 +1,15 @@
 from .Zookeeper import Zookeeper
 from .Veterinarian import Veterinarian
+from .ContactInfo import ContactInfo
+from .Credentials import Credentials
 
 class EmployeeFactory:
-    def getEmployee(self, name, username, password, id, role, preferredSpecies, treatingAnimalID):
+    def getEmployee(self, firstName, lastName, email, username, password, id, role, preferredSpecies, treatingAnimalID, assignedEnclosureID):
+        contactInfo = ContactInfo(firstName, lastName, email)
+        credentials = Credentials(username, password)
         if(role == "Zookeeper"):
-            return Zookeeper(name, username, password, id, preferredSpecies)
+            return Zookeeper(contactInfo, credentials, id, preferredSpecies, assignedEnclosureID)
         elif(role == "Veterinarian"):
-            return Veterinarian(name, username, password, id, treatingAnimalID)
+            return Veterinarian(contactInfo, credentials, id, treatingAnimalID)
 
         return None

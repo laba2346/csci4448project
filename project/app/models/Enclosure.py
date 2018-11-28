@@ -5,22 +5,22 @@ class Enclosure:
         self.animals = animals
         self.foodType = foodType
         self.cleanliness = "Clean"
-        self.assignedKeeper = None
         self.id = Enclosure.id
+        self.numAnimals = len(self.animals)
         Enclosure.id += 1
 
     # Getters
     def getAnimals(self):
         return self.animals
 
+    def getNumAnimals(self):
+        return self.numAnimals
+
     def getFoodType(self):
         return self.foodType
 
     def getCleanliness(self):
         return self.cleanliness
-
-    def getAssignedKeeper(self):
-        return self.assignedKeeper
 
     def getID(self):
         return self.id
@@ -35,11 +35,13 @@ class Enclosure:
     def setCleanliness(self, cleanliness):
         self.cleanliness = cleanliness
 
-    def setAssignedKeeper(self, assignedKeeper):
-        self.assignedKeeper = assignedKeeper
+    def setNumAnimals(self, numAnimals):
+        self.numAnimals = numAnimals
 
     def addAnimal(self, animal):
         self.animals.append(animal)
+        self.numAnimals += 1
 
     def removeAnimal(self, animalID):
         self.animals = [animal for animal in self.animals if animal.getID() != animalID]
+        self.numAnimals -= 1

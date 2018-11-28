@@ -1,8 +1,9 @@
-class Species:
-    def __init__(self, diet, name, description, habitat):
-        self.diet = diet
+class SpeciesInfo:
+    def __init__(self, name, description, diet, habitat, scientificName):
         self.name = name
+        self.scientificName = scientificName
         self.description = description
+        self.diet = diet
         self.habitat = habitat
 
     # Getters
@@ -18,6 +19,9 @@ class Species:
     def getHabitat(self):
         return self.habitat
 
+    def getScientificName(self):
+        return self.scientificName
+
     # Setters
     def setDiet(self, diet):
         self.diet = diet
@@ -31,5 +35,5 @@ class Species:
     def setHabitat(self, habitat):
         self.habitat = habitat
 
-    def printInformation():
-        print("TODO")
+    def setScientificName(self, scientificName):
+        self.scientificName = scientificName

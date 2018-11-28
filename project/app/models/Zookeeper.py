@@ -1,12 +1,19 @@
 from .Employee import Employee
 
 class Zookeeper(Employee):
-    def __init__(self, name, username, password, id, preferredSpecies):
-        super().__init__(name, username, password, id, "Zookeeper")
-        self.preferredSpecies = preferredSpecies
+    def __init__(self, contactInfo, credentials, id, preferredSpeciesName, assignedEnclosureID):
+        super().__init__(contactInfo, credentials, id, "Zookeeper")
+        self.preferredSpeciesName = preferredSpeciesName
+        self.assignedEnclosureID = assignedEnclosureID
 
-    def getPreferredSpecies(self):
-        return self.preferredSpecies
+    def getPreferredSpeciesName(self):
+        return self.preferredSpeciesName
 
-    def setPreferredSpecies(self, preferredSpecies):
-        self.preferredSpecies = preferredSpecies
+    def getAssignmentID(self):
+        return self.assignedEnclosureID
+
+    def setPreferredSpeciesName(self, preferredSpeciesName):
+        self.preferredSpecies = preferredSpeciesName
+
+    def setAssignedEnclosureID(self, assignedEnclosureID):
+        self.assignedEnclosureID = assignedEnclosureID

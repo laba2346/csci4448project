@@ -1,16 +1,19 @@
 from .Employee import Employee
 
 class Veterinarian(Employee):
-    def __init__(self, name, username, password, id, treatingAnimalID):
-        super().__init__(name, username, password, id, "Veterinarian")
+    def __init__(self, contactInfo, username, password, id, treatingAnimalID):
+        super().__init__(contactInfo, credentials, id, "Veterinarian")
         self.treatingAnimalID = treatingAnimalID
         self.isTreatingAnimal = treatingAnimalID != -1
 
-    def getTreatingAnimalID(self):
-        return self.treatingAnimalID
-
     def getIsTreatingAnimal(self):
         return self.isTreatingAnimal
+
+    def getIsTreatingAnimalEnglish(self):
+        return "Yes" if self.isTreatingAnimal else "No"
+
+    def getAssignmentID(self):
+        return self.treatingAnimalID
 
     def setTreatingAnimalID(self, treatingAnimalID):
         self.treatingAnimalID = treatingAnimalID

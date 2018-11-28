@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Species{% endblock %}
+{% block body %}
+
+
+<h1 class="jumbotron display-4">Species Index</h1>
+<div class="outer_container_species">
+    <div class="col shadow p-3 mb-5 bg-white rounded panel">
+        <div class="card-deck">
+            {% for s in species%}
+            <div class="card">
+                <img class="card-img-top" src="{{ url_for('static', filename='img/'+s.getName().lower().replace(' ',''))+'.jpg'}}" alt="Card image cap"/>
+                <div class="card-body">
+                    <h3 style="margin-bottom:10px">{{s.getName()}}</h3>
+                    <dl class="row">
+                        <dt class="col-sm-5">Scientific Name</dt>
+                        <dd class="col-sm-7">{{ s.getScientificName() }}</dd>
+                        <dt class="col-sm-5">Description</dt>
+                        <dd class="col-sm-7">{{ s.getDescription() }}</dd>
+                        <dt class="col-sm-5">Diet</dt>
+                        <dd class="col-sm-7">{{ s.getDiet() }}</dd>
+                        <dt class="col-sm-5">Habitat</dt>
+                        <dd class="col-sm-7">{{ s.getHabitat() }}</dd>
+                    </dl>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

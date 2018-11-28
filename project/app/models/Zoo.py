@@ -1,20 +1,30 @@
+from .AnimalFactory import AnimalFactory
+from .Enclosure import Enclosure
+from .Monkey import Monkey
+from .Gorilla import Gorilla
+from .PolarBear import PolarBear
+
 class Zoo:
-    def __init__(self, enclosures, employees, species):
+    def __init__(self, enclosures, employees, speciesList):
         self.enclosures = enclosures
         self.employees = employees
-        self.species = species
+        self.speciesList = [Monkey.getSpeciesInfo(), Gorilla.getSpeciesInfo(), PolarBear.getSpeciesInfo()]
 
     def addEnclosure(self, enclosure):
         self.enclosures.append(enclosure)
 
     def removeEnclosure(self, enclosureID):
-        for index, enclosure in enumerate(self.enclosures):
-            id = enclosure.getID()
-            if(id == enclosureID):
-                del self.enclosures[index]
+        self.enclosures = [enclosure for enclosure in self.enclosures if int(enclosure.getID()) != int(enclosureID)]
 
     def getEnclosures(self):
         return self.enclosures
+
+    def getEnclosureByID(self, desiredID):
+        for enclosure in self.enclosures:
+            print(desiredID, enclosure.getID())
+            if(enclosure.getID() == desiredID):
+                return enclosure
+        return None
 
     def addAnimalToEnclosure(self, animal, enclosureID):
         for e in self.enclosures:
@@ -24,18 +34,22 @@ class Zoo:
     def removeAnimalFromEnclosure(self, enclosureID, animalID):
         for i in range(0, len(self.enclosures)):
             if(self.enclosures[i].getID() == enclosureID):
-                print('lets goo')
                 self.enclosures[i].removeAnimal(animalID)
 
 
-    def addEmployee(self, employee):
-        self.employees.append(employee)
-
-    def removeEmployee(self, employeeID):
-        for index, employee in enumerate(self.employees):
-            id = employee.getID()
-            if(id == employeeID):
-                del self.employees[index]
+    def getAnimalByID(self, desiredID):
+        for enclosure in self.enclosures:
+            animals = enclosure.getAnimals()
+            for animal in animals:
+                if(int(animal.getID()) == int(desiredID)):
+                    return animal
+        return None
 
     def getSpeciesList(self):
-        return self.species
+        return self.speciesList
+        
+    def getEmployees(self):
+        return self.employees
+
+    def setEmployees(self, employees):
+        self.employees = employees

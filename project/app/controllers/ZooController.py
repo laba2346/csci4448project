@@ -3,27 +3,16 @@ from ..models.Zoo import *
 from ..models.Employee import *
 from ..models.Enclosure import *
 from ..models.AnimalFactory import *
+from ..models.SpeciesInfo import *
 from flask import render_template, redirect, url_for, request
+from flask_login import current_user
+from app import zoo
+import random
+import json
 
 class ZooController:
-    def __init__(self):
-        self.animalFactory = AnimalFactory()
-
-    def createZoo(self):
-        species_list = ["Monkey", "Gorilla", "Polar bear"]
-
-        jimbo = self.animalFactory.getAnimal("Jimbo", "M", 3, True, "Monkey")
-        max = self.animalFactory.getAnimal("Max", "M", 1.5, True, "Monkey")
-        bob = self.animalFactory.getAnimal("Bob", "M", 3, False, "Gorilla")
-        pooh = self.animalFactory.getAnimal("Pooh", "M", 1, True, "Polar bear")
-
-        enclosure_1 = Enclosure([jimbo, max, bob], "Fruit & Nuts", "Clean")
-        enclosure_2 = Enclosure([pooh], "Fish", "Clean")
-
-        self.zoo = Zoo([enclosure_1, enclosure_2],[], species_list)
-
     def getZoo(self):
-        return self.zoo
+        return zoo
 
     def addAnimal(self):
         name = request.form['name']
@@ -31,18 +20,103 @@ class ZooController:
         age = request.form['age']
         sex = request.form['sex']
         enclosureID = request.form['enclosure']
-
-        newAnimal = self.animalFactory.getAnimal(name, sex, age, True, species)
-        self.zoo.addAnimalToEnclosure(newAnimal, int(enclosureID))
+        other = {}
+        other['canClimbTrees'] = request.form['canClimbTrees']
+        other['friendlyEnough'] = request.form['friendlyEnough']
+        other['canReproduce'] = request.form['canReproduce']
+        newAnimal = AnimalFactory.getAnimal(name, sex, age, True, species, other)
+        zoo.addAnimalToEnclosure(newAnimal, int(enclosureID))
 
         return redirect(url_for('animals'))
 
-    def deleteAnimal(self, enclosureID, animalID):
-        self.zoo.removeAnimalFromEnclosure(int(enclosureID), int(animalID))
+    def editAnimal(self):
+        name = request.form['name']
+        sex = request.form['sex']
+        age = request.form['age']
+        healthy = (request.form['healthy'] == "Yes")
+        animalID = int(request.form['animalID'])
 
+        for enclosure in zoo.getEnclosures():
+            for animal in enclosure.getAnimals():
+                if(animal.getID() == animalID):
+                    animal.setName(name)
+                    animal.setSex(sex)
+                    animal.setAge(age)
+                    animal.setHealthy(healthy)
+
+        return redirect(url_for('animals'))
+
+
+    def deleteAnimal(self, enclosureID, animalID):
+        zoo.removeAnimalFromEnclosure(int(enclosureID), int(animalID))
         return redirect(url_for('animals'))
 
     def addEnclosure(self):
-        self.zoo.addEnclosure(Enclosure([], "", ""))
+        zoo.addEnclosure(Enclosure([], "", ""))
+        return redirect(url_for('enclosures'))
+
+    def editEnclosure(self):
+        foodType = request.form['foodType']
+        cleanliness = request.form['cleanliness']
+        enclosureID = int(request.form['enclosureID'])
+
+        for enclosure in zoo.getEnclosures():
+            if(enclosure.getID() == enclosureID):
+                enclosure.setFoodType(foodType)
+                enclosure.setCleanliness(cleanliness)
 
         return redirect(url_for('enclosures'))
+
+    def deleteEnclosure(self, enclosureID):
+        print(enclosureID)
+        zoo.removeEnclosure(enclosureID)
+        return redirect(url_for('enclosures'))
+
+
+    def constructKeeperChart(self):
+        data = {}
+        datasets = []
+        dataset = {}
+        dataPoints = []
+        labels = []
+        colors = []
+        for species in zoo.getSpeciesList():
+            speciesName = species.getName()
+            labels.append(speciesName)
+            colors.append("#%06x" % random.randint(0, 0xFFFFFF))
+            count = 0
+            for enclosure in zoo.getEnclosures():
+                for animal in enclosure.getAnimals():
+                    if(animal.getSpeciesInfo().getName() == speciesName):
+                        count += 1
+            dataPoints.append(count)
+        dataset['label'] = 'Animals'
+        dataset['backgroundColor'] = colors
+        dataset['data'] = dataPoints
+        datasets.append(dataset)
+        data['labels'] = labels
+        data['datasets'] = datasets
+
+        return data
+
+    def constructVetChart(self):
+        data = {}
+        datasets = []
+        dataset = {}
+        dataPoints = [0,0]
+        labels = ["Healthy","Unhealthy"]
+        colors = ['#00ff00', '#ff0000']
+        for enclosure in zoo.getEnclosures():
+            for animal in enclosure.getAnimals():
+                if(animal.getHealthy()):
+                    dataPoints[0] += 1
+                else:
+                    dataPoints[1] += 1
+        dataset['label'] = 'Animal health'
+        dataset['backgroundColor'] = colors
+        dataset['data'] = dataPoints
+        datasets.append(dataset)
+        data['labels'] = labels
+        data['datasets'] = datasets
+
+        return data

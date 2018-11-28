@@ -1,72 +1,209 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Animals{% endblock %}
 {% block body %}
 
-<h1 class="jumbotron">Animals</h1>
-<div class="custom-container">
-    <form action="/add-animal" method="post">
-        <h2>Add a new animal</h2>
-        <div class="row">
-            <div class="col">
-                <input type="text" class="form-control" name="name" placeholder="Name">
-            </div>
-            <div class="col">
-                <select id="species" class="form-control" name="species" placeholder="Species">
-                    <option selected>Choose species...</option>
-                    {% for s in species %}
-                    <option>{{ s }}</option>
-                    {% endfor%}
-                </select>
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" name="age" placeholder="Age">
-            </div>
-            <div class="col">
-                <input type="text" class="form-control" name="sex" placeholder="Sex">
-            </div>
-        </div>
-        <div class="form-row">
-            <div class="col">
-                <select id="enclosure" class="form-control" name="enclosure" placeholder="Enclosure">
-                    <option selected>Choose enclosure...</option>
-                    {% for e in enclosures %}
-                    <option>{{ e.getID() }}</option>
-                    {% endfor%}
-                </select>
-            </div>
-            <div class="col">
-            <button type="submit" class="btn btn-primary">Add</button>
-            </div>
-        </div>
-    </form>
-    <table class="table">
-        <thead>
-            <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Species</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Age</th>
-                <th scope="col">Healthy?</th>
-                <th scope="col">Enclosure ID</th>
-                <th scope="col">Edit</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for enclosure in enclosures %}
-            {% for animal in enclosure.getAnimals() %}
-            <tr>
-                <th scope="row">{{ animal.getName() }}</th>
-                <td>{{ animal.getSpeciesName() }}</td>
-                <td>{{ animal.getSex() }}</td>
-                <td>{{ animal.getAge() }}</td>
-                <td>{{ animal.getHealthy() }}</td>
-                <td>{{ enclosure.getID() }}</td>
-                <td><a role="button" class="btn btn-danger" href="/delete-animal/{{ enclosure.getID() }}/{{ animal.getID() }}/">Delete</a></td>
-            </tr>
-            {% endfor %}
-            {% endfor %}
 
-        </tbody>
-    </table>
+<h1 class="jumbotron display-4">Animals</h1>
+<div class="outer_container">
+    {% if user.getRole() == "Zookeeper" %}
+    <div class="col shadow p-3 mb-5 bg-white rounded panel">
+        <form action="/add-animal" method="post">
+            <h4>Add a new animal</h4>
+            <div class="row">
+                <div class="col">
+                    <input type="text" class="form-control" name="name" placeholder="Name">
+                </div>
+                <div class="col">
+                    <select id="species" class="form-control" name="species" placeholder="Species">
+                        <option selected>Choose species...</option>
+                        {% for s in species %}
+                        <option>{{ s.getName() }}</option>
+                        {% endfor%}
+                    </select>
+                </div>
+                <div class="col">
+                    <input type="text" class="form-control" name="age" placeholder="Age">
+                </div>
+                <div class="col">
+                    <select id="sex" class="form-control" name="sex" placeholder="Sex">
+                        <option selected>Choose sex...</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                    </select>
+                </div>
+                <div class="col">
+                    <select id="enclosure" class="form-control" name="enclosure" placeholder="Enclosure">
+                        <option selected>Choose enclosure...</option>
+                        {% for e in enclosures %}
+                        <option>{{ e.getID() }}</option>
+                        {% endfor%}
+                    </select>
+                </div>
+                <div id="additional_info_monkey">
+                    <div class="col">
+                        <select id="canClimbTrees" class="form-control" name="canClimbTrees">
+                            <option selected>Mature enough to climb trees?</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="additional_info_gorilla">
+                    <div class="col">
+                        <select id="friendlyEnough" class="form-control" name="friendlyEnough">
+                            <option selected>Friendly with other animals?</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="additional_info_polarbear">
+                    <div class="col">
+                        <select id="canReproduce" class="form-control" name="canReproduce">
+                            <option selected>Suitable for mating?</option>
+                            <option>Yes</option>
+                            <option>No</option>
+                        </select>
+                    </div>
+                </div>
+                <script>
+                    $('#species').change(function() {
+                        if($('#species option:selected').text() === "Monkey"){
+                            $('#additional_info_monkey').show()
+                            $('#additional_info_gorilla').hide()
+                            $('#additional_info_polarbear').hide()
+                        } else if($('#species option:selected').text() === "Gorilla"){
+                            $('#additional_info_gorilla').show()
+                            $('#additional_info_monkey').hide()
+                            $('#additional_info_polarbear').hide()
+                        } else if($('#species option:selected').text() === "Polar bear"){
+                            $('#additional_info_polarbear').show()
+                            $('#additional_info_monkey').hide()
+                            $('#additional_info_gorilla').hide()
+                        }
+                    });
+                </script>
+            </div>
+            <div class="form-row" style="margin-top:10px;">
+                <div class="col" style="float:right;">
+                    <button type="submit" class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    {% endif %}
+    <div class="col shadow p-3 mb-5 bg-white rounded panel">
+        <h4>Animal list</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Species</th>
+                    <th scope="col">Sex</th>
+                    <th scope="col">Age</th>
+                    <th scope="col">Healthy?</th>
+                    <th scope="col">More info</th>
+                    <th scope="col">Edit</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for enclosure in enclosures %}
+                {% for animal in enclosure.getAnimals() %}
+                <tr>
+                    <td><h5>{{ animal.getName() }}</h5></td>
+                    <td>{{ animal.getSpeciesInfo().getName() }}</td>
+                    <td>{{ animal.getSex() }}</td>
+                    <td>{{ animal.getAge() }}</td>
+                    <td>{{ animal.getHealthyEnglish() }}</td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#infoModal{{animal.getID()}}">
+                            More info
+                        </button>
+                        <div class="modal fade" id="infoModal{{ animal.getID() }}" tabindex="-1" role="dialog" aria-labelledby="infoModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="infoModalLabel">{{animal.getName()}}'s Information</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <dl class="row">
+                                            {% for fact in animal.getDetailedInfo() %}
+                                            <dt class="col-sm-7">{{ fact[0] }}</dt>
+                                            <dd class="col-sm-5">{{ fact[1] }}</dd>
+                                            {% endfor %}
+                                            <dt class="col-sm-7">Enclosure ID</dt>
+                                            <dd class="col-sm-5">{{ enclosure.getID() }}</dd>
+                                        </dl>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editModal{{animal.getID()}}">
+                            Edit
+                        </button>
+                        <div class="modal fade" id="editModal{{ animal.getID() }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 class="modal-title" id="editModalLabel">Edit animal information</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <form action="/edit-animal" method="post">
+                                        <div class="modal-body">
+                                            <div class="inner_modal">
+                                                <div class="row" style="margin-bottom:15px">
+                                                    Name: <input type="text" class="form-control" name="name" value="{{animal.getName()}}">
+                                                </div>
+                                                <div class="row" style="margin-bottom:15px">
+                                                    Sex:
+                                                    <select id="sex" class="form-control" name="sex" placeholder="Sex">
+                                                        <option selected>Currently {{animal.getSex()}}</option>
+                                                        <option>Male</option>
+                                                        <option>Female</option>
+                                                    </select>
+                                                </div>
+                                                <div class="row" style="margin-bottom:15px">
+                                                    Age: <input type="text" class="form-control" name="age" value="{{animal.getAge()}}">
+                                                </div>
+                                                <div class="row" style="margin-bottom:15px">
+                                                    Healthy:
+                                                    <select id="healthy" class="form-control" name="healthy" placeholder="{{animal.getHealthyEnglish()}}">
+                                                        <option selected>Currently {{animal.getHealthyEnglish()}}</option>
+                                                        <option>Yes</option>
+                                                        <option>No</option>
+                                                    </select>
+                                                </div>
+                                                <input type="text" class="d-none" name="animalID" value="{{animal.getID()}}" />
+                                            </div>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                        {% if user.getRole() == "Zookeeper" %}
+                        <a role="button" class="btn btn-danger" href="/delete-animal/{{ enclosure.getID() }}/{{ animal.getID() }}/">Delete</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                {% endfor %}
+
+            </tbody>
+        </table>
+    </div>
 </div>
 {% endblock %}

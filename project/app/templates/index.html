@@ -3,7 +3,104 @@
 {% block body %}
 
 <div class="jumbotron">
-    <h1>Welcome {{ current_user.getRole() }}!</h1>
+    <h1 class="display-3">Welcome {{ current_user.getRole() }}!</h1>
     <p>Welcome to ZooManagement. Click any of the tabs above to manage the zoo.</p>
 </div>
+{% if current_user.getRole() == "Zookeeper" %}
+<div class="outer_container">
+    <div class="row">
+        <div class="col shadow p-3 mb-5 bg-white rounded panel">
+            <h3>Animals in the Zoo</h3>
+            <div class="chart-container">
+                <canvas id="pie-chart" width="40" height="40"></canvas>
+            </div>
+            <script>
+                new Chart(document.getElementById("pie-chart"), {
+                    type: 'pie',
+                    data: JSON.parse('{{ data | tojson}}'),
+                    options: {
+                        title: {
+                            display: false
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+            </script>
+        </div>
+        <div class="col shadow p-3 mb-5 bg-white rounded">
+            {% if enclosure is not none %}
+            <h3> Your assigned enclosure <small class="text-muted" id="enclosure_name">Enclosure #{{ current_user.getAssignmentID() }}</small></h3>
+            <div id="enclosure_info">
+                <dl class="row">
+                    <dt class="col-sm-5">Number of animals</dt>
+                    <dd class="col-sm-7">{{ enclosure.getNumAnimals() }}</dd>
+                    <dt class="col-sm-5">Food Type</dt>
+                    <dd class="col-sm-7">{{ enclosure.getFoodType() }}</dd>
+                    <dt class="col-sm-5">Cleanliness</dt>
+                    <dd class="col-sm-7">{{ enclosure.getCleanliness() }}</dd>
+                </dl>
+            </div>
+            {% else %}
+            <h3> Your assigned enclosure <small class="text-muted" id="enclosure_name">None</small></h3>
+            <p>
+                Contact a supervisor to be assigned to a new enclosure.
+            </p>
+            {% endif %}
+
+        </div>
+        <div class="w-100"></div>
+    </div>
+</div>
+{% elif current_user.getRole() == "Veterinarian" %}
+
+<div class="outer_container">
+    <div class="row">
+        <div class="col shadow p-3 mb-5 bg-white rounded panel">
+            <h3>Animal health in the Zoo</h3>
+            <div class="chart-container">
+                <canvas id="pie-chart2" width="40" height="40"></canvas>
+            </div>
+            <script>
+                new Chart(document.getElementById("pie-chart2"), {
+                    type: 'pie',
+                    data: JSON.parse('{{ data | tojson}}'),
+                    options: {
+                        title: {
+                            display: false
+                        },
+                        responsive: true,
+                        maintainAspectRatio: false,
+                    }
+                });
+            </script>
+        </div>
+        <div class="col shadow p-3 mb-5 bg-white rounded">
+            {% if animal is not none %}
+            <h3> Your assigned animal <small class="text-muted" id="enclosure_name"> {{ animal.getName() }}</small></h3>
+            <div id="enclosure_info">
+                <dl class="row">
+                    <dt class="col-sm-5">Species</dt>
+                    <dd class="col-sm-7">{{ animal.getSpeciesInfo().getName() }}</dd>
+                    <dt class="col-sm-5">Age</dt>
+                    <dd class="col-sm-7">{{ animal.getAge() }}</dd>
+                    <dt class="col-sm-5">Sex</dt>
+                    <dd class="col-sm-7">{{ animal.getSex() }}</dd>
+                    <dt class="col-sm-5">Healthy?</dt>
+                    <dd class="col-sm-7">{{ animal.getHealthyEnglish() }}</dd>
+                </dl>
+            </div>
+            {% else %}
+            <h3> Your assigned animal <small class="text-muted" id="enclosure_name">None</small></h3>
+            <p>
+                Contact a supervisor to be assigned to a new animal
+            </p>
+            {% endif %}
+
+        </div>
+        <div class="w-100"></div>
+    </div>
+</div>
+
+{% endif %}
 {% endblock %}

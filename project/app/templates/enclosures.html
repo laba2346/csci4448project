@@ -1,18 +1,71 @@
 {% extends "base.html" %}
-{% block title %}Home{% endblock %}
+{% block title %}Enclosures{% endblock %}
 {% block body %}
 
-<div class="jumbotron">
-    <h1>Enclosures</h1>
+<h1 class="jumbotron display-4">Enclosures</h1>
+<div class="outer_container">
+    {% if user.getRole() == "Zookeeper" %}
+    <div style="margin-bottom:30px;">
+        <a role="button" class="btn btn-success" href="/create-new-enclosure">Add new enclosure</a>
+    </div>
+    {% endif %}
+    {% for enclosure in enclosures %}
+    <div class="col shadow p-3 mb-5 bg-white rounded panel">
+        <ul class="list-inline">
+            <h2 class="list-inline-item"> Enclosure {{ enclosure.getID() }} </h2>
+            {% if user.getRole() == "Zookeeper" %}
+            <a role="button" class="btn btn-danger" style="margin-left:5px;float:right;" href="/delete-enclosure/{{ enclosure.getID() }}">Delete</a>
+            <button type="button" class="btn btn-primary" style="float:right;" data-toggle="modal" data-target="#editModal{{enclosure.getID()}}">
+                Edit info
+            </button>
+            {% endif %}
+            <div class="modal fade" id="editModal{{ enclosure.getID() }}" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editModalLabel">Edit enclosure information</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <form action="/edit-enclosure" method="post">
+                            <div class="modal-body">
+                                <div class="inner_modal">
+                                    <p>
+                                        You can remove animals from the Animals tab.
+                                    </p>
+                                    <div class="row" style="margin-bottom:15px">
+                                        Food type: <input type="text" class="form-control" name="foodType" value="{{enclosure.getFoodType()}}">
+                                    </div>
+                                    <div class="row">
+                                        Cleanliness: <input type="text" class="form-control" name="cleanliness" value="{{enclosure.getCleanliness()}}">
+                                    </div>
+                                    <input type="text" class="d-none" name="enclosureID" value="{{enclosure.getID()}}" />
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </ul>
+        <dl class="row">
+            <dt class="col-sm-5">Number of animals</dt>
+            <dd class="col-sm-7">{{ enclosure.getNumAnimals() }}</dd>
+            <dt class="col-sm-5">Food Type</dt>
+            <dd class="col-sm-7">{{ enclosure.getFoodType() }}</dd>
+            <dt class="col-sm-5">Cleanliness</dt>
+            <dd class="col-sm-7">{{ enclosure.getCleanliness() }}</dd>
+        </dl>
+        <ul class="list-group">
+        {% for animal in enclosure.getAnimals() %}
+          <li class="list-group-item">{{animal.getName()}} ({{ animal.getSpeciesInfo().getName() }})</li>
+        {% endfor %}
+        </ul>
+    </div>
+    {% endfor %}
 </div>
-<a role="button" class="btn btn-success" href="/create-new-enclosure">Add new enclosure</a>
-
-{% for enclosure in enclosures %}
-<h2> Enclosure {{ enclosure.getID() }} </h2>
-<ul class="list-group">
-{% for animal in enclosure.getAnimals() %}
-  <li class="list-group-item">{{animal.getName()}}</li>
-{% endfor %}
-</ul>
-{% endfor %}
 {% endblock %}

@@ -1,2 +1,2 @@
-1,Zookeeper,Landon,landon,password,Monkey,-1
-1,Veterinarian,LandonVet,landonvet,password,Gorilla,-1
+1,Landon,Baxter,landon.baxter@colorado.edu,landonnnn,password1,Zookeeper,Monkey,-1,1,
+2,LandonVettt>,Baxter,landonvet@colorado.edu,landonvet,password,Veterinarian,Gorilla,2,-1,

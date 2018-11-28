@@ -1,18 +1,13 @@
-class Animal:
+from abc import ABC, abstractmethod
+
+class Animal(ABC):
     id = 1
 
-    def __init__(self, name, sex, age, healthy, diet, speciesName,
-        speciesDescription, habitat):
-
-        self.id = id
+    def __init__(self, name, sex, age, healthy):
         self.name = name
         self.sex = sex
         self.age = age
         self.healthy = healthy
-        self.diet = diet
-        self.speciesName = speciesName
-        self.speciesDescription = speciesDescription
-        self.habitat = habitat
         self.id = Animal.id
         Animal.id += 1
 
@@ -33,11 +28,10 @@ class Animal:
     def getHealthy(self):
         return self.healthy
 
-    def getSpeciesName(self):
-        return self.speciesName
+    def getHealthyEnglish(self):
+        result = "Yes" if self.healthy else "No"
 
-    def getSpeciesDescription(self):
-        return self.speciesDescription
+        return result
 
     # Setters
     def setName(self, name):
@@ -48,3 +42,10 @@ class Animal:
 
     def setAge(self, age):
         self.age = age
+
+    def setSex(self, sex):
+        self.sex = sex
+
+    @abstractmethod
+    def getDetailedInfo(self):
+        pass
