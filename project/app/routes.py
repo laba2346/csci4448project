@@ -7,7 +7,6 @@ from app.forms import LoginForm
 from app.models.Employee import Employee
 from app.models.Animal import Animal
 from app.models.Enclosure import Enclosure
-from app.controllers.UserController import *
 from app.controllers.ZooController import *
 
 
@@ -45,19 +44,18 @@ def settings():
 
 @login.user_loader
 def load_user(username):
-    return userController.findUser(username)
+    return zooController.findEmployee(username)
 
 
 zooController = ZooController()
-userController = UserController()
 
 ### User interaction; uses controllers ###
-app.add_url_rule('/login', 'login', userController.login, methods=["GET", "POST"])
-app.add_url_rule('/logout', 'logout', userController.logout)
+app.add_url_rule('/login', 'login', zooController.login, methods=["GET", "POST"])
+app.add_url_rule('/logout', 'logout', zooController.logout)
 app.add_url_rule('/add-animal', 'addAnimal', zooController.addAnimal, methods=["POST"])
 app.add_url_rule('/edit-animal', 'editAnimal', zooController.editAnimal, methods=["POST"])
 app.add_url_rule('/delete-animal/<path:enclosureID>/<path:animalID>/', 'deleteAnimal', zooController.deleteAnimal)
 app.add_url_rule('/create-new-enclosure', 'create-new-enclosure', zooController.addEnclosure)
 app.add_url_rule('/edit-enclosure', 'editEnclosure', zooController.editEnclosure, methods=["POST"])
 app.add_url_rule('/delete-enclosure/<path:enclosureID>', 'deleteEnclosure', zooController.deleteEnclosure)
-app.add_url_rule('/edit-user', 'editUser', userController.editUser, methods=["POST"])
+app.add_url_rule('/edit-user', 'editUser', zooController.editEmployee, methods=["POST"])

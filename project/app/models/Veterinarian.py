@@ -1,7 +1,7 @@
 from .Employee import Employee
 
 class Veterinarian(Employee):
-    def __init__(self, contactInfo, username, password, id, treatingAnimalID):
+    def __init__(self, contactInfo, credentials, id, treatingAnimalID):
         super().__init__(contactInfo, credentials, id, "Veterinarian")
         self.treatingAnimalID = treatingAnimalID
         self.isTreatingAnimal = treatingAnimalID != -1

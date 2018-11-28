@@ -5,7 +5,7 @@ from .Gorilla import Gorilla
 from .PolarBear import PolarBear
 
 class Zoo:
-    def __init__(self, enclosures, employees, speciesList):
+    def __init__(self, enclosures, employees):
         self.enclosures = enclosures
         self.employees = employees
         self.speciesList = [Monkey.getSpeciesInfo(), Gorilla.getSpeciesInfo(), PolarBear.getSpeciesInfo()]
@@ -47,7 +47,7 @@ class Zoo:
 
     def getSpeciesList(self):
         return self.speciesList
-        
+
     def getEmployees(self):
         return self.employees
 

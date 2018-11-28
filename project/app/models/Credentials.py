@@ -6,11 +6,14 @@ class Credentials:
     def getUsername(self):
         return self.username
 
+    def getPassword(self):
+        return self.password
+
     def checkPassword(self, password):
         return password == self.password
 
-    def setUsername(self):
+    def setUsername(self, username):
         self.username = username
 
-    def setPassword(self):
+    def setPassword(self, password):
         self.password = password
