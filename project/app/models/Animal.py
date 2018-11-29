@@ -2,7 +2,8 @@ from abc import ABC, abstractmethod
 
 class Animal(ABC):
     id = 1
-
+    speciesInfo = None
+    
     def __init__(self, name, sex, age, healthy):
         self.name = name
         self.sex = sex
@@ -48,4 +49,8 @@ class Animal(ABC):
 
     @abstractmethod
     def getDetailedInfo(self):
+        pass
+
+    @abstractmethod
+    def getSpeciesInfo(self):
         pass

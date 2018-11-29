@@ -13,11 +13,6 @@ import random
 import json
 
 class ZooController:
-    def __init__(self):
-        #test
-        self.animalFactory = AnimalFactory()
-        self.employeeFactory = EmployeeFactory()
-
     def getZoo(self):
         return zoo
 

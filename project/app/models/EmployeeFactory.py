@@ -4,7 +4,8 @@ from .ContactInfo import ContactInfo
 from .Credentials import Credentials
 
 class EmployeeFactory:
-    def getEmployee(self, firstName, lastName, email, username, password, id, role, preferredSpecies, assignmentID):
+    @staticmethod
+    def getEmployee(firstName, lastName, email, username, password, id, role, preferredSpecies, assignmentID):
         contactInfo = ContactInfo(firstName, lastName, email)
         credentials = Credentials(username, password)
         if(role == "Zookeeper"):

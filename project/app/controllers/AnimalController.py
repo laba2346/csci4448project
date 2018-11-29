@@ -5,9 +5,6 @@ from ..models.AnimalFactory import *
 from app import zoo
 
 class AnimalController:
-    def __init__(self):
-        self.animalFactory = AnimalFactory()
-        
     def addAnimal(self):
         name = request.form['name']
         species = request.form['species']
@@ -18,7 +15,7 @@ class AnimalController:
         other['canClimbTrees'] = request.form['canClimbTrees']
         other['friendlyEnough'] = request.form['friendlyEnough']
         other['canReproduce'] = request.form['canReproduce']
-        newAnimal = self.animalFactory.getAnimal(name, sex, age, True, species, other)
+        newAnimal = AnimalFactory.getAnimal(name, sex, age, True, species, other)
         zoo.addAnimalToEnclosure(newAnimal, int(enclosureID))
 
         return redirect(url_for('animals'))

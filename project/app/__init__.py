@@ -15,9 +15,6 @@ login.init_app(app)
 
 login.login_view = 'login'
 
-employeeFactory = EmployeeFactory()
-animalFactory = AnimalFactory()
-
 jimbo = AnimalFactory.getAnimal("Jimbo", "Male", 3, True, "Monkey", {'canClimbTrees':"Yes"})
 max = AnimalFactory.getAnimal("Max", "Male", 1.5, False, "Monkey", {'canClimbTrees':"No"})
 bob = AnimalFactory.getAnimal("Bob", "Male", 3, False, "Gorilla", {'friendlyEnough':"Yes"})
@@ -26,8 +23,8 @@ pooh = AnimalFactory.getAnimal("Pooh", "Male", 1, True, "Polar bear", {'canRepro
 enclosure_1 = Enclosure([jimbo, max, bob], "Fruit & Nuts", "Clean")
 enclosure_2 = Enclosure([pooh], "Fish", "Clean")
 
-landon = employeeFactory.getEmployee("Landon", "Baxter", "landon.baxter@colorado.edu", "landon", "password",1,"Zookeeper","Monkey",1)
-landonvet = employeeFactory.getEmployee("Landon", "Baxter", "landon.baxter@colorado.edu", "landonvet", "password",2,"Veterinarian","",2)
+landon = EmployeeFactory.getEmployee("Landon", "Baxter", "landon.baxter@colorado.edu", "landon", "password",1,"Zookeeper","Monkey",1)
+landonvet = EmployeeFactory.getEmployee("Landon", "Baxter", "landon.baxter@colorado.edu", "landonvet", "password",2,"Veterinarian","",2)
 
 zoo = Zoo([enclosure_1, enclosure_2],[landon, landonvet])
 
