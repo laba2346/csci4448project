@@ -43,5 +43,12 @@ class Enclosure:
         self.numAnimals += 1
 
     def removeAnimal(self, animalID):
-        self.animals = [animal for animal in self.animals if animal.getID() != animalID]
-        self.numAnimals -= 1
+        index = -1
+
+        for i,animal in enumerate(self.animals):
+            if int(animal.getID()) == int(animalID):
+                print('hello')
+                index = i
+        if(index != -1):
+            del self.animals[index]
+            self.numAnimals -= 1

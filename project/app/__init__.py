@@ -2,7 +2,11 @@ from flask import Flask
 from config import Config
 from app.models.Enclosure import Enclosure
 from app.models.Zoo import Zoo
-from app.models.EmployeeFactory import EmployeeFactory
+from app.models.Monkey import *
+from app.models.Gorilla import *
+from app.models.PolarBear import *
+from app.models.Zookeeper import Zookeeper
+from app.models.Veterinarian import Veterinarian
 from app.models.AnimalFactory import AnimalFactory
 from app.models.SpeciesInfo import SpeciesInfo
 from flask_login import LoginManager
@@ -23,10 +27,10 @@ pooh = AnimalFactory.getAnimal("Pooh", "Male", 1, True, "Polar bear", {'canRepro
 enclosure_1 = Enclosure([jimbo, max, bob], "Fruit & Nuts", "Clean")
 enclosure_2 = Enclosure([pooh], "Fish", "Clean")
 
-landon = EmployeeFactory.getEmployee("Landon", "Baxter", "landon.baxter@colorado.edu", "landon", "password",1,"Zookeeper","Monkey",1)
-landonvet = EmployeeFactory.getEmployee("Landon", "Baxter", "landon.baxter@colorado.edu", "landonvet", "password",2,"Veterinarian","",2)
+landon = Zookeeper("Landon", "Baxter", "landon.baxter@colorado.edu", "landon", "password", Monkey.getSpeciesInfo(), enclosure_1)
+landonvet = Veterinarian("Landon", "Baxter", "landon.baxter@colorado.edu", "landonvet", "password",max)
 
-zoo = Zoo([enclosure_1, enclosure_2],[landon, landonvet])
+zoo = Zoo([enclosure_1, enclosure_2],[landon,landonvet])
 
 from app import routes
 

@@ -1,6 +1,7 @@
 from flask import render_template, redirect, url_for, request
 from flask_login import current_user, login_user, login_required, logout_user
 from app.forms import LoginForm
+from app.models.Enclosure import Enclosure
 from app import zoo
 
 class EnclosureController:
@@ -21,6 +22,5 @@ class EnclosureController:
         return redirect(url_for('enclosures'))
 
     def deleteEnclosure(self, enclosureID):
-        print(enclosureID)
         zoo.removeEnclosure(enclosureID)
         return redirect(url_for('enclosures'))

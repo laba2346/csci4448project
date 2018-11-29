@@ -1,22 +1,30 @@
 from .Employee import Employee
 
 class Veterinarian(Employee):
-    def __init__(self, contactInfo, credentials, id, treatingAnimalID):
-        super().__init__(contactInfo, credentials, id, "Veterinarian")
-        self.treatingAnimalID = treatingAnimalID
-        self.isTreatingAnimal = treatingAnimalID != -1
+    def __init__(self, firstName, lastName, email, username, password, animalTreating):
+        super().__init__(firstName, lastName, email, username, password, "Veterinarian")
+        self.animalTreating = animalTreating
+        self.isTreatingAnimal= animalTreating is not None
 
     def getIsTreatingAnimal(self):
-        return self.isTreatingAnimal
+        return self.isanimalTreating
 
     def getIsTreatingAnimalEnglish(self):
         return "Yes" if self.isTreatingAnimal else "No"
 
-    def getAssignmentID(self):
-        return self.treatingAnimalID
+    def getAnimalTreating(self):
+        return self.animalTreating
 
-    def setTreatingAnimalID(self, treatingAnimalID):
-        self.treatingAnimalID = treatingAnimalID
+    def getAssignmentID(self):
+        if(self.animalTreating is not None):
+            return self.animalTreating.getID()
+        return -1
+
+    def setAnimalTreating(self, animalTreating):
+        self.animalTreating = animalTreating
 
     def setIsTreatingAnimal(self, isTreatingAnimal):
-        self.isTreatingAnimal = isTreatingAnimal
+        self.isanimalTreating = isTreatingAnimal
+
+    def removeAssignment(self):
+        self.animalTreating = None

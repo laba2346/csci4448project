@@ -20,10 +20,10 @@ from app.controllers.EmployeeController import *
 def index():
     if(current_user.getRole() == "Zookeeper"):
         data = zooController.constructKeeperChart()
-        return render_template("index.html", current_user=current_user, enclosure=zooController.getZoo().getEnclosureByID(current_user.getAssignmentID()), data=data)
+        return render_template("index.html", current_user=current_user, enclosure=current_user.getAssignedEnclosure(), data=data)
     else:
         data = zooController.constructVetChart()
-        return render_template("index.html", current_user=current_user, animal=zooController.getZoo().getAnimalByID(current_user.getAssignmentID()), data=data)
+        return render_template("index.html", current_user=current_user, animal=current_user.getAnimalTreating(), data=data)
 
 @app.route('/animals')
 @login_required

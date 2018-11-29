@@ -7,6 +7,7 @@ from .PolarBear import PolarBear
 class Zoo:
     def __init__(self, enclosures, employees):
         self.enclosures = enclosures
+        print(self.enclosures[0])
         self.employees = employees
         self.speciesList = [Monkey.getSpeciesInfo(), Gorilla.getSpeciesInfo(), PolarBear.getSpeciesInfo()]
 
@@ -14,7 +15,17 @@ class Zoo:
         self.enclosures.append(enclosure)
 
     def removeEnclosure(self, enclosureID):
-        self.enclosures = [enclosure for enclosure in self.enclosures if int(enclosure.getID()) != int(enclosureID)]
+        index = -1
+        for i,enclosure in enumerate(self.enclosures):
+            if int(enclosure.getID()) == int(enclosureID):
+                index = i
+        if(index != -1):
+            for employee in self.employees:
+                if(employee.getRole() == "Zookeeper"):
+                    if(int(employee.getAssignmentID()) == int(enclosureID)):
+                        employee.removeAssignment()
+            del self.enclosures[index]
+
 
     def getEnclosures(self):
         return self.enclosures
@@ -32,10 +43,15 @@ class Zoo:
                 e.addAnimal(animal)
 
     def removeAnimalFromEnclosure(self, enclosureID, animalID):
+        animalID = int(animalID)
+        enclosureID = int(enclosureID)
         for i in range(0, len(self.enclosures)):
             if(self.enclosures[i].getID() == enclosureID):
                 self.enclosures[i].removeAnimal(animalID)
 
+        for employee in self.employees:
+            if(employee.getRole() == "Veterinarian" and employee.getAssignmentID() == animalID):
+                employee.removeAssignment()
 
     def getAnimalByID(self, desiredID):
         for enclosure in self.enclosures:

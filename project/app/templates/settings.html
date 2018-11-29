@@ -13,7 +13,7 @@
             <dd class="col-sm-7">{{ user.getRole() }}</dd>
             {% if user.getRole() == "Zookeeper" %}
             <dt class="col-sm-5">Preferred Species</dt>
-            <dd class="col-sm-7">{{ user.getPreferredSpeciesName() }}</dd>
+            <dd class="col-sm-7">{{ user.getPreferredSpecies().getName() }}</dd>
             <dt class="col-sm-5">Assigned Enclosure (ID)</dt>
             <dd class="col-sm-7">{{ user.getAssignmentID() }}</dd>
             {% elif user.getRole() == "Veterinarian" %}

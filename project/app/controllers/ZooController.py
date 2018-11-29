@@ -4,7 +4,6 @@ from ..models.Employee import *
 from ..models.Enclosure import *
 from ..models.AnimalFactory import *
 from ..models.SpeciesInfo import *
-from ..models.EmployeeFactory import *
 from flask import render_template, redirect, url_for, request
 from flask_login import current_user, login_user, login_required, logout_user
 from app.forms import LoginForm
