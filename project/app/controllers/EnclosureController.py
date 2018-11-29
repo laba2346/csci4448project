@@ -6,10 +6,26 @@ from app import zoo
 
 class EnclosureController:
     def addEnclosure(self):
+        """Add an empty enclosure to the zoo
+
+        Args:
+            none
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         zoo.addEnclosure(Enclosure([], "", ""))
         return redirect(url_for('enclosures'))
 
     def editEnclosure(self):
+        """Edits existing enclosure with a request's information
+
+        Args:
+            none. The Flask request object is implicitly passed however
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         foodType = request.form['foodType']
         cleanliness = request.form['cleanliness']
         enclosureID = int(request.form['enclosureID'])
@@ -22,5 +38,13 @@ class EnclosureController:
         return redirect(url_for('enclosures'))
 
     def deleteEnclosure(self, enclosureID):
+        """Deletes existing enclosure specified by user
+
+        Args:
+            enclosureID (int): The ID of the enclosure to be deleted
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         zoo.removeEnclosure(enclosureID)
         return redirect(url_for('enclosures'))

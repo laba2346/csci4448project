@@ -90,10 +90,10 @@
 </li>
       <li><a href="app.controllers.html#module-app.controllers.ZooController">app.controllers.ZooController (module)</a>
 </li>
-      <li><a href="app.html#module-app.forms">app.forms (module)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.html#module-app.forms">app.forms (module)</a>
+</li>
       <li><a href="app.models.html#module-app.models">app.models (module)</a>
 </li>
       <li><a href="app.models.html#module-app.models.Animal">app.models.Animal (module)</a>
@@ -105,8 +105,6 @@
       <li><a href="app.models.html#module-app.models.Credentials">app.models.Credentials (module)</a>
 </li>
       <li><a href="app.models.html#module-app.models.Employee">app.models.Employee (module)</a>
-</li>
-      <li><a href="app.models.html#module-app.models.EmployeeFactory">app.models.EmployeeFactory (module)</a>
 </li>
       <li><a href="app.models.html#module-app.models.Enclosure">app.models.Enclosure (module)</a>
 </li>
@@ -174,8 +172,6 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="app.controllers.html#app.controllers.EmployeeController.EmployeeController">EmployeeController (class in app.controllers.EmployeeController)</a>
 </li>
-      <li><a href="app.models.html#app.models.EmployeeFactory.EmployeeFactory">EmployeeFactory (class in app.models.EmployeeFactory)</a>
-</li>
       <li><a href="app.models.html#app.models.Enclosure.Enclosure">Enclosure (class in app.models.Enclosure)</a>
 </li>
       <li><a href="app.controllers.html#app.controllers.EnclosureController.EnclosureController">EnclosureController (class in app.controllers.EnclosureController)</a>
@@ -205,6 +201,10 @@
       <li><a href="app.models.html#app.models.Zoo.Zoo.getAnimalByID">getAnimalByID() (app.models.Zoo.Zoo method)</a>
 </li>
       <li><a href="app.models.html#app.models.Enclosure.Enclosure.getAnimals">getAnimals() (app.models.Enclosure.Enclosure method)</a>
+</li>
+      <li><a href="app.models.html#app.models.Veterinarian.Veterinarian.getAnimalTreating">getAnimalTreating() (app.models.Veterinarian.Veterinarian method)</a>
+</li>
+      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.getAssignedEnclosure">getAssignedEnclosure() (app.models.Zookeeper.Zookeeper method)</a>
 </li>
       <li><a href="app.models.html#app.models.Employee.Employee.getAssignmentID">getAssignmentID() (app.models.Employee.Employee method)</a>
 
@@ -243,8 +243,6 @@
       <li><a href="app.models.html#app.models.SpeciesInfo.SpeciesInfo.getDiet">getDiet() (app.models.SpeciesInfo.SpeciesInfo method)</a>
 </li>
       <li><a href="app.models.html#app.models.ContactInfo.ContactInfo.getEmail">getEmail() (app.models.ContactInfo.ContactInfo method)</a>
-</li>
-      <li><a href="app.models.html#app.models.EmployeeFactory.EmployeeFactory.getEmployee">getEmployee() (app.models.EmployeeFactory.EmployeeFactory method)</a>
 </li>
       <li><a href="app.models.html#app.models.Zoo.Zoo.getEmployees">getEmployees() (app.models.Zoo.Zoo method)</a>
 </li>
@@ -292,7 +290,7 @@
 </li>
       <li><a href="app.models.html#app.models.Credentials.Credentials.getPassword">getPassword() (app.models.Credentials.Credentials method)</a>
 </li>
-      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.getPreferredSpeciesName">getPreferredSpeciesName() (app.models.Zookeeper.Zookeeper method)</a>
+      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.getPreferredSpecies">getPreferredSpecies() (app.models.Zookeeper.Zookeeper method)</a>
 </li>
       <li><a href="app.models.html#app.models.Employee.Employee.getRole">getRole() (app.models.Employee.Employee method)</a>
 </li>
@@ -300,9 +298,11 @@
 </li>
       <li><a href="app.models.html#app.models.Animal.Animal.getSex">getSex() (app.models.Animal.Animal method)</a>
 </li>
-      <li><a href="app.models.html#app.models.Gorilla.Gorilla.getSpeciesInfo">getSpeciesInfo() (app.models.Gorilla.Gorilla static method)</a>
+      <li><a href="app.models.html#app.models.Animal.Animal.getSpeciesInfo">getSpeciesInfo() (app.models.Animal.Animal method)</a>
 
       <ul>
+        <li><a href="app.models.html#app.models.Gorilla.Gorilla.getSpeciesInfo">(app.models.Gorilla.Gorilla static method)</a>
+</li>
         <li><a href="app.models.html#app.models.Monkey.Monkey.getSpeciesInfo">(app.models.Monkey.Monkey static method)</a>
 </li>
         <li><a href="app.models.html#app.models.PolarBear.PolarBear.getSpeciesInfo">(app.models.PolarBear.PolarBear static method)</a>
@@ -325,6 +325,8 @@
       <li><a href="app.models.html#app.models.Animal.Animal.id">id (app.models.Animal.Animal attribute)</a>
 
       <ul>
+        <li><a href="app.models.html#app.models.Employee.Employee.id">(app.models.Employee.Employee attribute)</a>
+</li>
         <li><a href="app.models.html#app.models.Enclosure.Enclosure.id">(app.models.Enclosure.Enclosure attribute)</a>
 </li>
       </ul></li>
@@ -378,10 +380,18 @@
 </li>
       <li><a href="app.models.html#app.models.Enclosure.Enclosure.removeAnimal">removeAnimal() (app.models.Enclosure.Enclosure method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="app.models.html#app.models.Zoo.Zoo.removeAnimalFromEnclosure">removeAnimalFromEnclosure() (app.models.Zoo.Zoo method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.models.html#app.models.Employee.Employee.removeAssignment">removeAssignment() (app.models.Employee.Employee method)</a>
+
+      <ul>
+        <li><a href="app.models.html#app.models.Veterinarian.Veterinarian.removeAssignment">(app.models.Veterinarian.Veterinarian method)</a>
+</li>
+        <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.removeAssignment">(app.models.Zookeeper.Zookeeper method)</a>
+</li>
+      </ul></li>
       <li><a href="app.models.html#app.models.Zoo.Zoo.removeEnclosure">removeEnclosure() (app.models.Zoo.Zoo method)</a>
 </li>
   </ul></td>
@@ -394,7 +404,9 @@
 </li>
       <li><a href="app.models.html#app.models.Enclosure.Enclosure.setAnimals">setAnimals() (app.models.Enclosure.Enclosure method)</a>
 </li>
-      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.setAssignedEnclosureID">setAssignedEnclosureID() (app.models.Zookeeper.Zookeeper method)</a>
+      <li><a href="app.models.html#app.models.Veterinarian.Veterinarian.setAnimalTreating">setAnimalTreating() (app.models.Veterinarian.Veterinarian method)</a>
+</li>
+      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.setAssignedEnclosure">setAssignedEnclosure() (app.models.Zookeeper.Zookeeper method)</a>
 </li>
       <li><a href="app.models.html#app.models.Monkey.Monkey.setCanClimbTrees">setCanClimbTrees() (app.models.Monkey.Monkey method)</a>
 </li>
@@ -424,10 +436,10 @@
 </li>
       <li><a href="app.models.html#app.models.Animal.Animal.setHealthy">setHealthy() (app.models.Animal.Animal method)</a>
 </li>
-      <li><a href="app.models.html#app.models.Veterinarian.Veterinarian.setIsTreatingAnimal">setIsTreatingAnimal() (app.models.Veterinarian.Veterinarian method)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="app.models.html#app.models.Veterinarian.Veterinarian.setIsTreatingAnimal">setIsTreatingAnimal() (app.models.Veterinarian.Veterinarian method)</a>
+</li>
       <li><a href="app.models.html#app.models.ContactInfo.ContactInfo.setLastName">setLastName() (app.models.ContactInfo.ContactInfo method)</a>
 </li>
       <li><a href="app.models.html#app.models.Animal.Animal.setName">setName() (app.models.Animal.Animal method)</a>
@@ -440,7 +452,7 @@
 </li>
       <li><a href="app.models.html#app.models.Credentials.Credentials.setPassword">setPassword() (app.models.Credentials.Credentials method)</a>
 </li>
-      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.setPreferredSpeciesName">setPreferredSpeciesName() (app.models.Zookeeper.Zookeeper method)</a>
+      <li><a href="app.models.html#app.models.Zookeeper.Zookeeper.setPreferredSpecies">setPreferredSpecies() (app.models.Zookeeper.Zookeeper method)</a>
 </li>
       <li><a href="app.models.html#app.models.Employee.Employee.setRole">setRole() (app.models.Employee.Employee method)</a>
 </li>
@@ -450,15 +462,15 @@
 </li>
       <li><a href="app.html#app.routes.settings">settings() (in module app.routes)</a>
 </li>
-      <li><a href="app.models.html#app.models.Veterinarian.Veterinarian.setTreatingAnimalID">setTreatingAnimalID() (app.models.Veterinarian.Veterinarian method)</a>
-</li>
       <li><a href="app.models.html#app.models.Credentials.Credentials.setUsername">setUsername() (app.models.Credentials.Credentials method)</a>
 </li>
       <li><a href="app.html#app.routes.species">species() (in module app.routes)</a>
 </li>
-      <li><a href="app.models.html#app.models.Gorilla.Gorilla.speciesInfo">speciesInfo (app.models.Gorilla.Gorilla attribute)</a>
+      <li><a href="app.models.html#app.models.Animal.Animal.speciesInfo">speciesInfo (app.models.Animal.Animal attribute)</a>
 
       <ul>
+        <li><a href="app.models.html#app.models.Gorilla.Gorilla.speciesInfo">(app.models.Gorilla.Gorilla attribute)</a>
+</li>
         <li><a href="app.models.html#app.models.Monkey.Monkey.speciesInfo">(app.models.Monkey.Monkey attribute)</a>
 </li>
         <li><a href="app.models.html#app.models.PolarBear.PolarBear.speciesInfo">(app.models.PolarBear.PolarBear attribute)</a>

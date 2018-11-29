@@ -5,12 +5,28 @@ from app import zoo
 
 class EmployeeController:
     def findEmployee(self, desiredUsername):
+        """Finds an employee by username and returns the employee object. Used by flask-login to maintain a session
+
+        Args:
+            desiredUsername (string): Username of the desired user
+        Returns:
+            Employee: The object corresponding to the desired user. 'None' if not found.
+
+        """
         for user in zoo.getEmployees():
             if(user.getCredentials().getUsername() == desiredUsername):
                 return user
         return None
 
     def editEmployee(self):
+        """Finds an employee by username and returns the employee object. Used by flask-login to maintain a session
+
+        Args:
+            None. Flask request object is implicitly passed and accessed, however
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         firstName = request.form['firstName']
         lastName = request.form['lastName']
         username = request.form['username']
@@ -32,6 +48,14 @@ class EmployeeController:
         return redirect(url_for('settings'))
 
     def login(self):
+        """Creates the login form, authenticates the user, and redirects user if already logged in.
+
+        Args:
+            none
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         if(current_user.is_authenticated):
             return redirect(url_for('index'))
         form = LoginForm()
@@ -44,5 +68,12 @@ class EmployeeController:
         return render_template('login.html', form=form)
 
     def logout(self):
+        """Simply invokes the logout_user function from flask_login. Ends the user's session
+
+        Args:
+            none
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+        """
         logout_user()
         return redirect(url_for('login'))

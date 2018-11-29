@@ -22,10 +22,10 @@ login.login_view = 'login'
 jimbo = AnimalFactory.getAnimal("Jimbo", "Male", 3, True, "Monkey", {'canClimbTrees':"Yes"})
 max = AnimalFactory.getAnimal("Max", "Male", 1.5, False, "Monkey", {'canClimbTrees':"No"})
 bob = AnimalFactory.getAnimal("Bob", "Male", 3, False, "Gorilla", {'friendlyEnough':"Yes"})
-pooh = AnimalFactory.getAnimal("Pooh", "Male", 1, True, "Polar bear", {'canReproduce':"Yes"})
+fluffy = AnimalFactory.getAnimal("Fluffy", "Female", 2, True, "Polar bear", {'canReproduce':"Yes"})
 
-enclosure_1 = Enclosure([jimbo, max, bob], "Fruit & Nuts", "Clean")
-enclosure_2 = Enclosure([pooh], "Fish", "Clean")
+enclosure_1 = Enclosure([fluffy], "Fish", "Clean")
+enclosure_2 = Enclosure([jimbo, max, bob], "Fruit & Nuts", "Clean")
 
 landon = Zookeeper("Landon", "Baxter", "landon.baxter@colorado.edu", "landon", "password", Monkey.getSpeciesInfo(), enclosure_1)
 landonvet = Veterinarian("Landon", "Baxter", "landon.baxter@colorado.edu", "landonvet", "password",max)

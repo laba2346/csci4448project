@@ -6,6 +6,14 @@ from app import zoo
 
 class AnimalController:
     def addAnimal(self):
+        """Adds an Animal to the zoo and redirects user accordingly
+
+        Args:
+            None. Flask request is implicitly passed, however.
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         name = request.form['name']
         species = request.form['species']
         age = request.form['age']
@@ -21,6 +29,14 @@ class AnimalController:
         return redirect(url_for('animals'))
 
     def editAnimal(self):
+        """Edits an existing animal's information and redirects the user accordingly
+
+        Args:
+            None. Flask request is implicitly passed, however.
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         name = request.form['name']
         sex = request.form['sex']
         age = request.form['age']
@@ -39,5 +55,14 @@ class AnimalController:
 
 
     def deleteAnimal(self, enclosureID, animalID):
+        """Adds an Animal to the zoo and redirects user accordingly
+
+        Args:
+            enclosureID (int): ID corresponding to the animal's enclosure \n
+            animalID (int): ID corresponding to the animal that needs to be deleted\n
+        Returns:
+            werkzeug.wrappers.Response: Flask response object for redirecting user.
+
+        """
         zoo.removeAnimalFromEnclosure(int(enclosureID), int(animalID))
         return redirect(url_for('animals'))

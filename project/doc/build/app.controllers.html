@@ -45,17 +45,40 @@
 <dl class="method">
 <dt id="app.controllers.AnimalController.AnimalController.addAnimal">
 <code class="descname">addAnimal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.AnimalController.AnimalController.addAnimal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Adds an Animal to the zoo and redirects user accordingly</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None. Flask request is implicitly passed, however.</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.AnimalController.AnimalController.deleteAnimal">
 <code class="descname">deleteAnimal</code><span class="sig-paren">(</span><em>enclosureID</em>, <em>animalID</em><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.AnimalController.AnimalController.deleteAnimal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Adds an Animal to the zoo and redirects user accordingly</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd><p class="first">enclosureID (int): ID corresponding to the animal’s enclosure</p>
+<p class="last">animalID (int): ID corresponding to the animal that needs to be deleted</p>
+</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.AnimalController.AnimalController.editAnimal">
 <code class="descname">editAnimal</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.AnimalController.AnimalController.editAnimal" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Edits an existing animal’s information and redirects the user accordingly</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None. Flask request is implicitly passed, however.</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -69,22 +92,50 @@
 <dl class="method">
 <dt id="app.controllers.EmployeeController.EmployeeController.editEmployee">
 <code class="descname">editEmployee</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EmployeeController.EmployeeController.editEmployee" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Finds an employee by username and returns the employee object. Used by flask-login to maintain a session</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None. Flask request object is implicitly passed and accessed, however</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.EmployeeController.EmployeeController.findEmployee">
 <code class="descname">findEmployee</code><span class="sig-paren">(</span><em>desiredUsername</em><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EmployeeController.EmployeeController.findEmployee" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Finds an employee by username and returns the employee object. Used by flask-login to maintain a session</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>desiredUsername (string): Username of the desired user</dd>
+<dt>Returns:</dt>
+<dd>Employee: The object corresponding to the desired user. ‘None’ if not found.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.EmployeeController.EmployeeController.login">
 <code class="descname">login</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EmployeeController.EmployeeController.login" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Creates the login form, authenticates the user, and redirects user if already logged in.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>none</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.EmployeeController.EmployeeController.logout">
 <code class="descname">logout</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EmployeeController.EmployeeController.logout" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Simply invokes the logout_user function from flask_login. Ends the user’s session</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>none</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -98,17 +149,38 @@
 <dl class="method">
 <dt id="app.controllers.EnclosureController.EnclosureController.addEnclosure">
 <code class="descname">addEnclosure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EnclosureController.EnclosureController.addEnclosure" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Add an empty enclosure to the zoo</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>none</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.EnclosureController.EnclosureController.deleteEnclosure">
 <code class="descname">deleteEnclosure</code><span class="sig-paren">(</span><em>enclosureID</em><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EnclosureController.EnclosureController.deleteEnclosure" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Deletes existing enclosure specified by user</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>enclosureID (int): The ID of the enclosure to be deleted</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.EnclosureController.EnclosureController.editEnclosure">
 <code class="descname">editEnclosure</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.EnclosureController.EnclosureController.editEnclosure" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Edits existing enclosure with a request’s information</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>none. The Flask request object is implicitly passed however</dd>
+<dt>Returns:</dt>
+<dd>werkzeug.wrappers.Response: Flask response object for redirecting user.</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 
@@ -122,17 +194,38 @@
 <dl class="method">
 <dt id="app.controllers.ZooController.ZooController.constructKeeperChart">
 <code class="descname">constructKeeperChart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.ZooController.ZooController.constructKeeperChart" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Constructs the necessary dictionary that is needed to construct the zookeeper’s pie chart</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Dictionary: Contains information about the zoo and its animals</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.ZooController.ZooController.constructVetChart">
 <code class="descname">constructVetChart</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.ZooController.ZooController.constructVetChart" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Constructs the necessary dictionary that is needed to construct the vet’s pie chart</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Dictionary: Contains information about the zoo’s healthiness to display on homepage</dd>
+</dl>
+</dd></dl>
 
 <dl class="method">
 <dt id="app.controllers.ZooController.ZooController.getZoo">
 <code class="descname">getZoo</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#app.controllers.ZooController.ZooController.getZoo" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns the zoo object</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>None</dd>
+<dt>Returns:</dt>
+<dd>Zoo: The application’s zoo object</dd>
+</dl>
+</dd></dl>
 
 </dd></dl>
 

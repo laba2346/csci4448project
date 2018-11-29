@@ -13,9 +13,24 @@ import json
 
 class ZooController:
     def getZoo(self):
+        """Returns the zoo object
+
+        Args:
+            None
+        Returns:
+            Zoo: The application's zoo object
+
+        """
         return zoo
 
     def constructKeeperChart(self):
+        """Constructs the necessary dictionary that is needed to construct the zookeeper's pie chart
+
+            Args:
+                None
+            Returns:
+                Dictionary: Contains information about the zoo and its animals
+        """
         data = {}
         datasets = []
         dataset = {}
@@ -42,6 +57,13 @@ class ZooController:
         return data
 
     def constructVetChart(self):
+        """Constructs the necessary dictionary that is needed to construct the vet's pie chart
+
+            Args:
+                None
+            Returns:
+                Dictionary: Contains information about the zoo's healthiness to display on homepage
+        """
         data = {}
         datasets = []
         dataset = {}
